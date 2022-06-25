@@ -1,0 +1,96 @@
+{% extends 'home.html' %}
+{% block body %}
+<html>
+<body style="background-color:orange" onload="resetSelection()">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<h1>YOUR ORDER</h1>
+
+<form action="{% url 'fruitapp:orderplaced' %}" method="post">
+  {% csrf_token %}
+  <label>username</label><br>
+  <input type="text" name="username" placeholder="enter your name"><br>
+  <label>phone number</label><br>
+  <input type="number" name="phone number" placeholder="enter your number"><br>
+  <label>email</label><br>
+  <input type="email" name="email" placeholder="enter your email"><br>
+  <label>address</label><br>
+  <input type="text" name="address" placeholder="enter your address"><br>
+  <label for="fruits">Choose your fruits:</label><br>
+
+<select name="fruits" id="fruits">
+  <option value="select">SELECT YOUR ITEM</option>
+  <option value="apple">APPLE  RS-100</option>
+  <option value="orange">ORANGE  RS-80</option>
+  <option value="grape">GRAPE  RS-90</option>
+  <option value="banana">BANANA  RS-60</option>
+</select><br>
+  <label>quandity</label><br>
+  <input type="number" name="quandity" placeholder="enter your quandity"><br>
+
+
+
+
+<script type="text/javascript">
+var citiesByState = {
+Alappuzha: ["Ambalappuzha","Aryadu Thekku"],
+Ernakulam: ["kochi","vytila"],
+Idukki: ["munnar","adimali"],
+Kannur: ["Azhikode","Ancharakandy"],
+Kasaragod: ["Ranipuram","Bekal Fort"],
+Kozhikode: ["Vayalada","Kappad"],
+Malappuram: ["kottakonnu","nilambur"],
+
+}
+function makeSubmenu(value) {
+if(value.length==0) document.getElementById("citySelect").innerHTML = "<option></option>";
+else {
+var citiesOptions = "";
+for(cityId in citiesByState[value]) {
+citiesOptions+="<option>"+citiesByState[value][cityId]+"</option>";
+}
+document.getElementById("citySelect").innerHTML = citiesOptions;
+}
+}
+function displaySelected() { var country = document.getElementById("countrySelect").value;
+var city = document.getElementById("citySelect").value;
+alert(country+"\n"+city);
+}
+function resetSelection() {
+document.getElementById("countrySelect").selectedIndex = 0;
+document.getElementById("citySelect").selectedIndex = 0;
+}
+</script>
+
+<label>select your district</label><br>
+<select id="countrySelect" size="1" onchange="makeSubmenu(this.value)">
+<option value="" disabled selected>Choose branches</option>
+<option>Alappuzha</option>
+<option>Ernakulam</option>
+<option>Idukki</option>
+  <option>Kannur</option>
+  <option>Kasaragod</option>
+  <option>Kozhikode</option>
+  <option>Malappuram</option>
+</select>
+<select id="citySelect" size="1" >
+<option value="" disabled selected>Choose sub branches</option>
+<option></option>
+</select><br>
+
+  <label>delivery date</label><br>
+  <input type="date" name="delivery date" placeholder="select your date"><br>
+   <br><br>
+  <input type="submit">
+
+
+</form>
+</body>
+</html>
+{% endblock %}
+
+
+
+
+
+

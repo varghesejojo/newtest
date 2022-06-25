@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <title>LOGIN</title>
+</head>
+<body style="background-color:orange">
+<h1>Login</h1>
+<form action="{% url 'fruitapp:login' %}" method="post">
+    {% csrf_token %}
+    <label>username</label>
+    <input type="text" name="username" placeholder="username"><br>
+
+    <label>password</label>
+    <input type="password" name="password" placeholder="password"><br>
+
+    <input type="submit"><br>
+     <a href="{% url 'fruitapp:register' %}" class="btn btn-primary">REGISTER NOW</a>
+{% for msg in messages %}
+    {{msg}}
+    {% endfor %}
+</form>
+
+
+</body>
+</html>
+{% endblock %}

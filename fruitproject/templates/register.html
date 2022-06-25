@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>REGISTER</title>
+</head>
+<body style="background-color:orange">
+<h1>Register</h1>
+<form action="{% url 'fruitapp:register' %}" method="post">
+    {% csrf_token %}
+    <label>username</label>
+    <input type="text" name="username" placeholder="username"><br>
+
+    <label>password</label>
+    <input type="password" name="password" placeholder="password"><br>
+
+    <label>confirmpassword</label>
+    <input type="password" name="confirmpassword" placeholder="confirmpassword"><br>
+    <input type="submit">
+{% for msg in messages %}
+    {{msg}}
+    {% endfor %}
+</form>
+
+</body>
+</html>
